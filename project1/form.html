@@ -1,0 +1,57 @@
+  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Program 1 </title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body id="main_body">
+    <img id="top" src="top.png" alt="">
+    <div id="form_container">
+        <h1><a>Program 1 </a></h1>
+        <form id="program2" class="appnitro" method="post" action="">
+            <div class="form_description">        
+                <p>Text manipulation program!</p>
+            </div>
+            <div>
+                <label for="field1">Input Field </label>                
+                <input onkeydown="escPressed(event)" oninput="textUpdated(this.value)" id="field1" name="field1" class="element text" maxlength="255" size="8" value="" />                
+            </div>            
+            <div>
+                <p id="p1">1</p>
+                <p id="p2">2</p>
+            </div>
+            <div onclick="buttonClicked()" class="buttons">
+                <input id="submit" class="button_text" type="submit" name="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+
+function textUpdated(val) {
+	var p1 = document.getElementById("p1");
+	p1.innerHTML = val;
+	var p2 = document.getElementById("p2");
+	p2.innerHTML = val.replace(/\D/g, "");
+}
+
+function buttonClicked() {
+	var field1 = document.getElementById("field1");
+	field1.innerHTML = '';
+}
+
+function escPressed(e) {
+	if(e.keyCode == 27) {
+		document.getElementById('field1').value = '';
+		document.getElementById('p1').innerHTML = '1';
+		document.getElementById('p2').innerHTML = '2';
+	}
+}
+</script>
+
+</html>
