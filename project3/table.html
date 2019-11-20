@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Program 3 </title>
+    <script type="text/javascript" src="prog3data.js"></script>
+
+    <style type="text/css">
+        #main_body {
+            font-family: arial, verdana, sans-serif;
+        }
+        p {
+            padding-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body id="main_body">
+    
+        <p>
+            Filter: <input id="filter" type="text" name="filter">
+        </p>
+    
+
+    <table>
+        <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+        </thead>
+        <tbody id="table">
+            <tr id="template">
+                <td id='firstname'></td>
+                <td id='lastname'></td>
+                <td id='city'></td>
+                <td id='state'></td>
+                <td id='zipcode'></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+		let template = document.getElementById("template");
+		updateTable(people);
+		
+		filter.addEventListener( "input" , (e) => {
+			let search = e.target.value.toLowerCase();
+			let filterResults = people.filter((result) => 
+			    result.firstname.toLowerCase().startsWith(search) ||
+				result.lastname.toLowerCase().startsWith(search)  ||
+				result.city.toLowerCase().startsWith(search)      ||
+				result.state.toLowerCase().startsWith(search)     ||
+				result.zipcode.toString().startsWith(search));
+			updateTable(filterResults);
+		});
+		
+		function updateTable(data) {
+			let tableBody = document.getElementById("table");
+			tableBody.innerHTML = '';
+			data.forEach((value) => {
+				let entry = template.cloneNode(true);
+				entry.children.firstname.innerHTML = value.firstname;
+				entry.children.lastname.innerHTML = value.lastname;
+				entry.children.city.innerHTML = value.city;
+				entry.children.state.innerHTML = value.state;
+				entry.children.zipcode.innerHTML = value.zipcode;
+				tableBody.append(entry);
+			})
+		}
+		
+    </script>
+</body>
+
+</html>
