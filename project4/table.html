@@ -43,64 +43,64 @@
     </table>
 
     <script>
-		const url = 'https://scottmadeira.com/api/tabledata';
-		
-		var data = fetch(url, {method: 'GET'})
-		.then(async (response) => {
-			if(response.ok) {
-				people = await response.json();
-				updateTable(people);
-			}
-		})
-		
-		let template = document.getElementById("template");
-		
-		filter.addEventListener( "input" , (e) => {
-			let search = e.target.value.toLowerCase();
-			let filterResults = people.filter((result) => 
-			    result.firstname.toLowerCase().startsWith(search) ||
-				result.lastname.toLowerCase().startsWith(search)  ||
-				result.city.toLowerCase().startsWith(search)      ||
-				result.state.toLowerCase().startsWith(search)     ||
-				result.zipcode.toString().startsWith(search));
-			updateTable(filterResults);
-		});
-		
-		function updateTable(data) {
-			console.log(data);
-			let tableBody = document.getElementById("table");
-			tableBody.innerHTML = '';
-			data.forEach((value) => {
-				let entry = template.cloneNode(true);
-				entry.children.firstname.innerHTML = value.firstname;
-				entry.children.lastname.innerHTML = value.lastname;
-				entry.children.city.innerHTML = value.city;
-				entry.children.state.innerHTML = value.state;
-				entry.children.zipcode.innerHTML = value.zipcode;
-				tableBody.append(entry);
-			})
-		}
-		
+        const url = 'https://scottmadeira.com/api/tabledata';
+        
+        var data = fetch(url, {method: 'GET'})
+        .then(async (response) => {
+            if(response.ok) {
+                people = await response.json();
+                updateTable(people);
+            }
+        })
+        
+        let template = document.getElementById("template");
+        
+        filter.addEventListener( "input" , (e) => {
+            let search = e.target.value.toLowerCase();
+            let filterResults = people.filter((result) => 
+                result.firstname.toLowerCase().startsWith(search) ||
+                result.lastname.toLowerCase().startsWith(search)  ||
+                result.city.toLowerCase().startsWith(search)      ||
+                result.state.toLowerCase().startsWith(search)     ||
+                result.zipcode.toString().startsWith(search));
+            updateTable(filterResults);
+        });
+        
+        function updateTable(data) {
+            console.log(data);
+            let tableBody = document.getElementById("table");
+            tableBody.innerHTML = '';
+            data.forEach((value) => {
+                let entry = template.cloneNode(true);
+                entry.children.firstname.innerHTML = value.firstname;
+                entry.children.lastname.innerHTML = value.lastname;
+                entry.children.city.innerHTML = value.city;
+                entry.children.state.innerHTML = value.state;
+                entry.children.zipcode.innerHTML = value.zipcode;
+                tableBody.append(entry);
+            })
+        }
+        
     </script>
 </body>
 
 <style>
-	.table { 
-		border: 3px solid black;
-	}
-	
-	.center {
-		margin: auto;
-		width: 50%;
-		padding: 10px;
-	}
-	
-	.search {
-		text-align: center;
-		border-radius: 10px;
-	}
-	
-	tr:nth-child(2n+2) { background: #CCC }
+    .table { 
+        border: 3px solid black;
+    }
+    
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+    
+    .search {
+        text-align: center;
+        border-radius: 10px;
+    }
+    
+    tr:nth-child(2n+2) { background: #CCC }
 </style>
 
 </html>
